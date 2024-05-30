@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface OrderInventoryRepository extends CrudRepository<OrderInventory, Long> {
+interface OrderInventoryRepository extends CrudRepository<OrderInventory, Long> {
 
     @Query(nativeQuery = true, value = "SELECT SUM(oi.total_qty_price) from order_inventory oi where oi.order_id = ?1")
     long orderIdAmount(long orderId);

@@ -11,6 +11,6 @@ import java.util.Optional;
  */
 
 @Repository
-public interface PaymentRepository extends CrudRepository<Payment, Long> {
+interface PaymentRepository extends CrudRepository<Payment, Long> {
     Optional<Payment> getPaymentsByOrderId(String orderId);
 }
