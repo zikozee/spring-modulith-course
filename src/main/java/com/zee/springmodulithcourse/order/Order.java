@@ -1,10 +1,5 @@
 package com.zee.springmodulithcourse.order;
 
-/**
- * @author : Ezekiel Eromosei
- * @code @created : 30 May, 2024
- */
-
 import com.zee.springmodulithcourse.order.type.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,6 +8,11 @@ import lombok.ToString;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+
+/**
+ * @author : Ezekiel Eromosei
+ * @code @created : 30 May, 2024
+ */
 
 @Getter
 @Setter
