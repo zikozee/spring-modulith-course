@@ -13,7 +13,7 @@ import java.util.Arrays;
 @AllArgsConstructor
 @Getter
 public enum Action {
-    PAYMENT("P"), EMAIL("E");
+    PAYMENT("P"), EMAIL("E"), COMPLETE_PAYMENT("C");
 
     private final String code;
 

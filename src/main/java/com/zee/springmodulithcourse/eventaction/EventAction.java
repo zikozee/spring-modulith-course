@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(indexes = {
-
+    @Index(name = "actionIdx", columnList = "action")
 })
 public class EventAction {
 
