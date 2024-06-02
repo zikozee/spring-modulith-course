@@ -1,4 +1,9 @@
+
 spring:
+  datasource:
+    username: modulith
+    password: modulith
+    url: jdbc:postgresql://localhost:5432/spring_modulith
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,3 +29,5 @@ management:
     web:
       exposure:
         include: '*'
+server:
+  port: 8081
