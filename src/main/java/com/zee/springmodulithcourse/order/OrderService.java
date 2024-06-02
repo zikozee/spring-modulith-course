@@ -1,5 +1,6 @@
 package com.zee.springmodulithcourse.order;
 
+import com.zee.springmodulithcourse.exception.ModulithException;
 import com.zee.springmodulithcourse.inventory.exposed.InventoryDto;
 import com.zee.springmodulithcourse.inventory.exposed.InventoryService;
 import com.zee.springmodulithcourse.order.dto.*;
@@ -59,7 +60,7 @@ public class OrderService {
 
     public CompleteOrderResponse completePayment(CompleteOrder completeOrder) {
         Optional<Order> optionalOrder = orderRepository.getOrderByOrderIdentifier(completeOrder.orderIdentifier());
-        if(optionalOrder.isEmpty()) throw new RuntimeException("Order not found");
+        if(optionalOrder.isEmpty()) throw new ModulithException("Order with id:'" + completeOrder.orderIdentifier() + "' not found");
         Order order = optionalOrder.get();
 
         final long amount = orderInventoryRepository.orderIdAmount(order.getId());

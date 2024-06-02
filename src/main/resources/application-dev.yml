@@ -14,8 +14,8 @@ delete:
   event:
     duration: 5000
 
-
-logging:
-  level:
-    org.springframework.modulith: DEBUG
-    org.springframework.web: DEBUG
+#
+#logging:
+#  level:
+#    org.springframework.modulith: DEBUG
+#    org.springframework.web: DEBUG

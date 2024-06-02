@@ -1,5 +1,6 @@
 package com.zee.springmodulithcourse.inventory;
 
+import com.zee.springmodulithcourse.exception.ModulithException;
 import com.zee.springmodulithcourse.inventory.exposed.InventoryDto;
 import com.zee.springmodulithcourse.inventory.exposed.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ class InventoryServiceImpl implements InventoryService {
     public InventoryDto fetchInventoryByName(String name) {
         return inventoryRepository.getInventoryByName(name)
                 .map(InventoryUtil::mapInventoryDto)
-                .orElseThrow(() -> new IllegalArgumentException("Could not find inventory by name: " + name));
+                .orElseThrow(() -> new ModulithException("Could not find inventory by name: " + name));
     }
 
     @Override

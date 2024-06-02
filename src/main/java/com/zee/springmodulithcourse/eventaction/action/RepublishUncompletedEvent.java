@@ -2,6 +2,7 @@ package com.zee.springmodulithcourse.eventaction.action;
 
 import com.zee.springmodulithcourse.eventaction.EventAction;
 import com.zee.springmodulithcourse.eventaction.EventActionRepository;
+import com.zee.springmodulithcourse.exception.ModulithException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -48,7 +49,7 @@ public class RepublishUncompletedEvent {
                 incompleteEventPublications.resubmitIncompletePublications((ep) -> ep.getEvent().getClass() == actionClass);
 //                completedEventPublications.deletePublicationsOlderThan(Duration.ofHours(env.getProperty("delete.event.duration", Long.class, 100L)));
             } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                throw new ModulithException(e.getMessage());
             }
         }
     }

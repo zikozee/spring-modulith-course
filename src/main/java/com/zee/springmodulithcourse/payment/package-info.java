@@ -1,4 +1,4 @@
 @org.springframework.modulith.ApplicationModule(
-        allowedDependencies = {"order::dto"}
+        allowedDependencies = {"order::dto", "exception"}
 )
 package com.zee.springmodulithcourse.payment;
