@@ -1,0 +1,33 @@
+
+spring:
+  datasource:
+    username: ${MODULITH_USERNAME:modulith}
+    password: ${MODULITH_PASSWORD:modulith}
+    url: jdbc:postgresql://${MODULITH_HOST}:${MODULITH_PORT:5432}/${MODULITH_DB_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: never
+
+  modulith:
+    republish-outstanding-events-on-restart: false
+
+delete:
+  event:
+    duration: ${DELETE_EVENT_DURATION:5000}
+
+#
+#logging:
+#  level:
+#    org.springframework.modulith: DEBUG
+#    org.springframework.web: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ${ACTUATOR_EXPOSED_ENDPOINTS:health}
+server:
+  port: ${SERVER_PORT:8081}
