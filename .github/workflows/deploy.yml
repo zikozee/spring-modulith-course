@@ -60,13 +60,8 @@ jobs:
       - name: Build with maven
         run: |
           apt-get update
-          apt-get install telnetd -y
-          dpkg -l | grep systemd
-          apt-get install systemd -y
-          systemctl status inetd
-          ufw allow 23/tcp
-          ufw reload
-          telnet localhost 5432
+          apt-get install net-tools -y
+          netstat -tulpn | grep ':5432'
           mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
         run: ls target/**
