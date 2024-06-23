@@ -50,7 +50,7 @@ jobs:
           java-version: '21'
           cache: maven
       - name: Output Info
-        run: ls
+        run: ls && mvn -version && ls /opt
 
       - name: Build with maven
         run: mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
