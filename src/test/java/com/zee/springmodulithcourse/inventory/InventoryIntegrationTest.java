@@ -5,7 +5,7 @@ import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @ApplicationModuleTest
-@ActiveProfiles("test")
+@ActiveProfiles("action")
 class InventoryIntegrationTest {
 
     @Test

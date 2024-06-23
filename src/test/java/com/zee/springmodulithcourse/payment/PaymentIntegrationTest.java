@@ -6,7 +6,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 
 @ApplicationModuleTest
-@ActiveProfiles("test")
+@ActiveProfiles("action")
 class PaymentIntegrationTest {
 
     @Test

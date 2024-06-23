@@ -6,7 +6,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 
 @ApplicationModuleTest(mode = ApplicationModuleTest.BootstrapMode.DIRECT_DEPENDENCIES)
-@ActiveProfiles("test")
+@ActiveProfiles("action")
 class OrderInventoryIntegrationTest {
 
     @Test

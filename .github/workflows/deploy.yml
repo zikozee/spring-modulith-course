@@ -32,7 +32,7 @@ jobs:
     container: postgres
     services:
       postgres:
-        image: 'postgres:16.2'
+        image: postgres
         env:
           POSTGRES_DB: ${{ vars.MODULITH_DB_NAME }}
           POSTGRES_PASSWORD: ${{ secrets.MODULITH_PASSWORD }}
@@ -58,10 +58,7 @@ jobs:
         run: ls && mvn -version && ls /opt
 
       - name: Build with maven
-        run: |
-          apt-get update
-          apt-get install iproute2 -y
-          ss -tulwn | grep ':5432' && mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
+        run: mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
         run: ls target/**
 

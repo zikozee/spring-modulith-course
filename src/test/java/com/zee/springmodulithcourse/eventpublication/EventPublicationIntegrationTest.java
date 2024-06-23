@@ -11,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ApplicationModuleTest
-@ActiveProfiles("test")
+@ActiveProfiles("action")
 class EventPublicationIntegrationTest {
 
     @Autowired

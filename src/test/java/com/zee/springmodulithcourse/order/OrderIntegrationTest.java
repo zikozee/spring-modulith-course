@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @ApplicationModuleTest(mode = ApplicationModuleTest.BootstrapMode.DIRECT_DEPENDENCIES)
-@ActiveProfiles("test")
+@ActiveProfiles("action")
 class OrderIntegrationTest {
 
     @Autowired
