@@ -8,11 +8,13 @@ jobs:
   build-section:
     environment: action
     runs-on: ubuntu-latest
+    env:
+      ACTUATOR_ENDPOINTS: ${{ ACTUATOR_EXPOSED_ENDPOINTS }}
 
     steps:
       - name: print something
         run: echo "Here Modulithers!! i am printing something"
       - name: show host environment variable
-        run: echo "actuator endpoint  ${{ACTUATOR_EXPOSED_ENDPOINTS}}"
+        run: echo "actuator endpoint  ${{ env.ACTUATOR_ENDPOINTS }}"
 
 #  push-image-section
