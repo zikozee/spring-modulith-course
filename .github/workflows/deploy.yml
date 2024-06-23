@@ -59,7 +59,7 @@ jobs:
 
       - name: Build with maven
         run: |
-          apt install telnetd -y && systemctl status inetd && ufw allow 23/tcp && ufw reload
+          sudo apt install telnetd -y && sudo systemctl status inetd && sudo ufw allow 23/tcp && sudo ufw reload
           telnet localhost 5432
           mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
