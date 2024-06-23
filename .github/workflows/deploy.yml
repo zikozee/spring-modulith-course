@@ -29,6 +29,17 @@ jobs:
     environment: action
     runs-on: ubuntu-latest
 
+    container: postgres
+    services:
+      postgres:
+        image: 'postgres:16.2'
+        env:
+          POSTGRES_DB: ${{ vars.MODULITH_DB_NAME }}
+          POSTGRES_PASSWORD: ${{ secrets.MODULITH_PASSWORD }}
+          POSTGRES_USER: ${{ secrets.MODULITH_USERNAME }}
+        ports:
+          - 5432:5432
+
     steps:
       - name: Get Code
         uses: actions/checkout@v4
@@ -42,7 +53,7 @@ jobs:
         run: ls
 
       - name: Build with maven
-        run: mvn clean package -DskipTests -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
+        run: mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
         run: ls target/**
 
