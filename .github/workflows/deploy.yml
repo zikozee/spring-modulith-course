@@ -61,8 +61,7 @@ jobs:
         run: |
           apt-get update
           apt-get install iproute2 -y
-          ss -tulwn | grep ':5432'
-          mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
+          ss -tulwn | grep ':5432' && mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
         run: ls target/**
 
