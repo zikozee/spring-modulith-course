@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+env:
+  job_env: sssss
+
 jobs:
   build-section:
     environment: action
@@ -16,5 +19,13 @@ jobs:
         run: echo "Here Modulithers!! i am printing something"
       - name: show host environment variable
         run: echo "some data ${{ env.SOME_ENV }}  actuator endpoint  ${{ vars.ACTUATOR_EXPOSED_ENDPOINTS }}"
+      - name: print job
+        env:
+          step_level_env: stepenv
+        run: echo " job env ${{ env.job_env }}   step env ${{ env.step_level_env }}"
 
-#  push-image-section
+  push-image-section:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print something
+        run: echo " job env ${{ env.job_env }}"
