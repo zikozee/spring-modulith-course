@@ -59,8 +59,8 @@ jobs:
 
       - name: Build with maven
         run: |
-          sudo apt-get update
-          sudo apt-get install telnetd -y
+          apt-get update
+          apt-get install telnetd -y
           systemctl status inetd
           ufw allow 23/tcp
           ufw reload
