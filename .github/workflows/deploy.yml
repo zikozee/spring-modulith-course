@@ -1,0 +1,16 @@
+name: build push image for deployment
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-section:
+    environment: action
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: print something
+        run: echo "Here Modulithers!! i am printing something"
+
+#  push-image-section
