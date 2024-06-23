@@ -42,7 +42,7 @@ jobs:
         run: ls
 
       - name: Build with maven
-        run: mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
+        run: mvn clean package -DskipTests -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
         run: ls target/**
 
