@@ -58,10 +58,9 @@ jobs:
         run: ls && mvn -version && ls /opt
 
       - name: Build with maven
-        env:
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
-        run: mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
+        run: |
+          ss -tulpn | grep 5432 &&
+          mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
         run: ls target/**
 
