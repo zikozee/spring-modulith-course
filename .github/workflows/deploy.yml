@@ -13,6 +13,6 @@ jobs:
       - name: print something
         run: echo "Here Modulithers!! i am printing something"
       - name: show host environment variable
-        run: echo "actuator endpoint  $ACTUATOR_EXPOSED_ENDPOINTS"
+        run: echo "actuator endpoint  ${{ACTUATOR_EXPOSED_ENDPOINTS}}"
 
 #  push-image-section
