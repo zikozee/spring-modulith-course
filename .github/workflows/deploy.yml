@@ -38,6 +38,13 @@ jobs:
           distribution: 'corretto'
           java-version: '21'
           cache: maven
+      - name: Output Info
+        run: ls
+
+      - name: Build with maven
+        run: mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
+      - name: list files
+        run: ls target/**
 
   push-image-section:
     runs-on: ubuntu-latest
