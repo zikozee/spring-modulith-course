@@ -66,6 +66,7 @@ jobs:
           MODULITH_PASSWORD: ${{ secrets.MODULITH_PASSWORD }}
           MODULITH_HOST: ${{ vars.MODULITH_HOST }}
           MODULITH_PORT: ${{ vars.MODULITH_PORT }}
+          MODULITH_DB_NAME: ${{ vars.MODULITH_DB_NAME }}
         run: mvn clean test
 
       - name: Build with maven
