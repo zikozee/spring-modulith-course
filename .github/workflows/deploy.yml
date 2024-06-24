@@ -58,9 +58,11 @@ jobs:
         run: ls && mvn -version && ls /opt
 
       - name: show host environment variable
-        run: echo "host ${{ vars.MODULITH_HOST }}  actuator endpoint  ${{ vars.MODULITH_DB_NAME }}"
+        run: echo "host ${{ vars.MODULITH_HOST }}  db name  ${{ vars.MODULITH_DB_NAME }}"
 
       - name: run maven test
+        env:
+          MODULITH_HOST: ${{ vars.MODULITH_HOST }}
         run: mvn clean test
 
       - name: Build with maven
