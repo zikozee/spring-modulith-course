@@ -97,4 +97,4 @@ jobs:
           name: spring-modulith-artifact
 
       - name: Output downloaded contents
-        run: ls
+        run: ls && ls target/**
