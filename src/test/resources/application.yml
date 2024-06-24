@@ -12,10 +12,10 @@ spring:
     init:
       mode: always
 
-  docker:
-    compose:
-      skip:
-        in-tests: true
+#  docker:
+#    compose:
+#      skip:
+#        in-tests: true
 
 logging:
   level:
