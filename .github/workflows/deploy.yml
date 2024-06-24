@@ -107,7 +107,7 @@ jobs:
           password:  ${{ secrets.DOCKER_PASSWORD }}
 
       - name: push image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/mudlith:1.0
