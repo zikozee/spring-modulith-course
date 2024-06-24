@@ -90,3 +90,11 @@ jobs:
     steps:
       - name: print something
         run: echo " job env ${{ env.job_env }}"
+
+      - name: download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: spring-modulith-artifact
+
+      - name: Output downloaded contents
+        run: ls
