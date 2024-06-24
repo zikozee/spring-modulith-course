@@ -79,7 +79,7 @@ jobs:
         with:
           name: spring-modulith-artifact
           path: |
-            target/*.jar
+            target/**/*.jar
             Dockerfile
           overwrite: 'true'
           retention-days: 5
