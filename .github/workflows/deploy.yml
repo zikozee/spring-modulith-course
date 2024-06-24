@@ -75,6 +75,7 @@ jobs:
         run: ls target/**
 
   push-image-section:
+    needs: build-job-section
     runs-on: ubuntu-latest
     steps:
       - name: print something
