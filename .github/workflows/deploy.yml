@@ -74,6 +74,16 @@ jobs:
       - name: list files
         run: ls target/**
 
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-modulith-artifact
+          path: |
+            target/*.jar
+            Dockerfile
+          overwrite: 'true'
+          retention-days: 5
+
   push-image-section:
     needs: build-job-section
     runs-on: ubuntu-latest
