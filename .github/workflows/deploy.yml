@@ -62,7 +62,10 @@ jobs:
 
       - name: run maven test
         env:
+          MODULITH_USERNAME: ${{ secrets.MODULITH_USERNAME }}
+          MODULITH_PASSWORD: ${{ secrets.MODULITH_PASSWORD }}
           MODULITH_HOST: ${{ vars.MODULITH_HOST }}
+          MODULITH_PORT: ${{ vars.MODULITH_PORT }}
         run: mvn clean test
 
       - name: Build with maven
