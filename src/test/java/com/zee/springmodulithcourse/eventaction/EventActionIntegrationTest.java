@@ -5,10 +5,8 @@ import com.zee.springmodulithcourse.eventaction.action.RepublishUncompletedEvent
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.modulith.test.ApplicationModuleTest;
-import org.springframework.test.context.ActiveProfiles;
 
 @ApplicationModuleTest
-@ActiveProfiles("action")
 class EventActionIntegrationTest {
 
     @Autowired

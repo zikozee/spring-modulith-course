@@ -32,7 +32,7 @@ jobs:
     container: postgres
     services:
       postgres:
-        image: postgres
+        image: 'postgres:16.2'
         env:
           POSTGRES_DB: ${{ vars.MODULITH_DB_NAME }}
           POSTGRES_PASSWORD: ${{ secrets.MODULITH_PASSWORD }}
@@ -57,7 +57,10 @@ jobs:
       - name: Output Info
         run: ls && mvn -version && ls /opt
 
+      - name: run maven test
+        run: mvn clean test -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: Build with maven
+
         run: mvn clean package -DskipTests -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
       - name: list files
         run: ls target/**

@@ -4,12 +4,10 @@ import com.zee.springmodulithcourse.order.dto.InventoryRequestDto;
 import com.zee.springmodulithcourse.order.dto.OrderDto;
 import com.zee.springmodulithcourse.order.dto.OrderPaymentDto;
 import com.zee.springmodulithcourse.order.dto.OrderResponseDto;
-import org.checkerframework.checker.guieffect.qual.UI;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @ApplicationModuleTest(mode = ApplicationModuleTest.BootstrapMode.DIRECT_DEPENDENCIES)
-@ActiveProfiles("action")
 class OrderIntegrationTest {
 
     @Autowired

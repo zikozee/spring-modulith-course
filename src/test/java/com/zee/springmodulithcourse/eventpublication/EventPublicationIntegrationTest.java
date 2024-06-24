@@ -4,14 +4,12 @@ package com.zee.springmodulithcourse.eventpublication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.modulith.test.ApplicationModuleTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ApplicationModuleTest
-@ActiveProfiles("action")
 class EventPublicationIntegrationTest {
 
     @Autowired

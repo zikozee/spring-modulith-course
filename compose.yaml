@@ -14,28 +14,28 @@ services:
     networks:
       modulith-network:
 
-  modulith-service:
-    container_name: modulith-service
-    image: modulith:1.0
-    ports:
-      - "8080:8081"
-    environment:
-#      SPRING_PROFILES_ACTIVE: "docker"
-      SPRING_PROFILE: "docker"
-      MODULITH_USERNAME: "modulith"
-      MODULITH_PASSWORD: "modulith"
-      MODULITH_HOST: "postgres"
-      MODULITH_PORT: 5432
-      MODULITH_DB_NAME: "spring_modulith"
-      DELETE_EVENT_DURATION: 4000
-      ACTUATOR_EXPOSED_ENDPOINTS: "health, modulith"
-      SERVER_PORT: 8081
-    depends_on:
-      - postgres
-
-    networks:
-      modulith-network:
-    restart: unless-stopped
+#  modulith-service:
+#    container_name: modulith-service
+#    image: modulith:1.0
+#    ports:
+#      - "8080:8081"
+#    environment:
+##      SPRING_PROFILES_ACTIVE: "docker"
+#      SPRING_PROFILE: "docker"
+#      MODULITH_USERNAME: "modulith"
+#      MODULITH_PASSWORD: "modulith"
+#      MODULITH_HOST: "postgres"
+#      MODULITH_PORT: 5432
+#      MODULITH_DB_NAME: "spring_modulith"
+#      DELETE_EVENT_DURATION: 4000
+#      ACTUATOR_EXPOSED_ENDPOINTS: "health, modulith"
+#      SERVER_PORT: 8081
+#    depends_on:
+#      - postgres
+#
+#    networks:
+#      modulith-network:
+#    restart: unless-stopped
 
 volumes:
   postgres:
