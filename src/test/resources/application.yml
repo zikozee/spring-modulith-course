@@ -2,7 +2,7 @@ spring:
   datasource:
     username: modulith
     password: modulith
-    url: jdbc:postgresql://postgres:5432/spring_modulith
+    url: jdbc:postgresql://${MODULITH_HOST}:5432/spring_modulith
   jpa:
     hibernate:
       ddl-auto: update
