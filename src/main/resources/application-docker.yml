@@ -30,8 +30,16 @@ management:
       exposure:
         include: ${ACTUATOR_EXPOSED_ENDPOINTS:health}
 
+
   endpoint:
     health:
-      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
 server:
   port: ${SERVER_PORT:8081}
