@@ -29,5 +29,9 @@ management:
     web:
       exposure:
         include: ${ACTUATOR_EXPOSED_ENDPOINTS:health}
+
+  endpoint:
+    health:
+      show-details: always
 server:
   port: ${SERVER_PORT:8081}

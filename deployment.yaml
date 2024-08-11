@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: modulith
+data:
+  SERVER_PORT: "8081"
+  MODULITH_USERNAME: "modulith"
+  MODULITH_PASSWORD: "modulith"
+  MODULITH_HOST: "localhost"
+  MODULITH_PORT: "5432"
+  MODULITH_DB_NAME: "spring_modulith"
+  DELETE_EVENT_DURATION: "5000"
+  ACTUATOR_EXPOSED_ENDPOINTS: "health"
+  SPRING_PROFILES_ACTIVE: "docker"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: modulith
+  name: modulith
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: modulith
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  template:
+    metadata:
+      labels:
+        app: modulith
+    spec:
+      containers:
+        - image: app:1.0
+          name: modulith
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 800m
+              memory: 3Gi
+            requests:
+              cpu: 400m
+              memory: 1Gi
+          envFrom:
+            - configMapRef:
+                name: modulith
+          livenessProbe:
+            initialDelaySeconds: 2
+            periodSeconds: 15
+            failureThreshold: 2
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8081
+          readinessProbe:
+            initialDelaySeconds: 2
+            periodSeconds: 15
+            failureThreshold: 10
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8081
+      dnsPolicy: ClusterFirst
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: modulith
+  name: modulith-service
+spec:
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: 8081
+      nodePort: 32000
+  type: NodePort
+  selector:
+    app: modulith
