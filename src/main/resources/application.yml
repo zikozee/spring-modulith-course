@@ -3,4 +3,4 @@ spring:
     name: spring-modulith-course
 
   profiles:
-    active: dev
+    active: ${SPRING_PROFILE_ACTIVE}

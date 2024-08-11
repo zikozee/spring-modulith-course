@@ -112,6 +112,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/mudlith:1.0
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile_old
           builder: ${{ steps.buildx.outputs.name }}
 
