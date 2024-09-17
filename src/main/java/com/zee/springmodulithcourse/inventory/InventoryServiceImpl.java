@@ -3,7 +3,6 @@ package com.zee.springmodulithcourse.inventory;
 import com.zee.springmodulithcourse.exception.ModulithException;
 import com.zee.springmodulithcourse.inventory.exposed.InventoryDto;
 import com.zee.springmodulithcourse.inventory.exposed.InventoryService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +13,13 @@ import java.util.List;
  */
 
 @Service
-@RequiredArgsConstructor
 class InventoryServiceImpl implements InventoryService {
 
     private final InventoryRepository inventoryRepository;
+
+    InventoryServiceImpl(InventoryRepository inventoryRepository) {
+        this.inventoryRepository = inventoryRepository;
+    }
 
     @Override
     public InventoryDto fetchInventoryByName(String name) {

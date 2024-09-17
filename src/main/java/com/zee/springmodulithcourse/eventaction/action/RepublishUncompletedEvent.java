@@ -3,8 +3,8 @@ package com.zee.springmodulithcourse.eventaction.action;
 import com.zee.springmodulithcourse.eventaction.EventAction;
 import com.zee.springmodulithcourse.eventaction.EventActionRepository;
 import com.zee.springmodulithcourse.exception.ModulithException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.modulith.events.CompletedEventPublications;
@@ -23,26 +23,34 @@ import java.util.concurrent.TimeUnit;
  * @code @created : 31 May, 2024
  */
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class RepublishUncompletedEvent {
+    private static final Logger logger = LoggerFactory.getLogger(RepublishUncompletedEvent.class);
 
     private final EventActionRepository eventActionRepository;
     private final IncompleteEventPublications incompleteEventPublications;
     private final CompletedEventPublications completedEventPublications;
     private final Environment env;
 
+    public RepublishUncompletedEvent(EventActionRepository eventActionRepository, 
+                                     IncompleteEventPublications incompleteEventPublications, 
+                                     CompletedEventPublications completedEventPublications, Environment env) {
+        this.eventActionRepository = eventActionRepository;
+        this.incompleteEventPublications = incompleteEventPublications;
+        this.completedEventPublications = completedEventPublications;
+        this.env = env;
+    }
+
 
     public void republish(Action action) {
         Optional<EventAction> optionalEventAction = eventActionRepository.getEventActionByAction(action);
 
         if(optionalEventAction.isEmpty()){
-            log.info("No event action found for action: {}", action);
+            logger.info("No event action found for action: {}", action);
         }
 
         if(optionalEventAction.isPresent()){
-            log.info("Republish uncompleted events for Action {}", action);
+            logger.info("Republish uncompleted events for Action {}", action);
             EventAction eventAction = optionalEventAction.get();
 
             try {
@@ -61,7 +69,7 @@ public class RepublishUncompletedEvent {
 
 //    @Scheduled(fixedRate = 10L, timeUnit = TimeUnit.SECONDS)
     public void republish() {
-        log.info("Republishing uncompleted events");
+        logger.info("Republishing uncompleted events");
         for(Action action: Action.values()){
             republish(action);
         }

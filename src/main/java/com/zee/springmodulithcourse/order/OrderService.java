@@ -5,8 +5,8 @@ import com.zee.springmodulithcourse.inventory.exposed.InventoryDto;
 import com.zee.springmodulithcourse.inventory.exposed.InventoryService;
 import com.zee.springmodulithcourse.order.dto.*;
 import com.zee.springmodulithcourse.order.type.Status;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,15 +20,22 @@ import java.util.concurrent.atomic.AtomicLong;
  * @code @created : 30 May, 2024
  */
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class OrderService {
+    private static final Logger logger = LoggerFactory.getLogger(OrderEventService.class);
 
     private final InventoryService inventoryService;
     private final OrderRepository orderRepository;
     private final OrderInventoryRepository orderInventoryRepository;
     private final OrderEventService orderEventService;
+
+    public OrderService(InventoryService inventoryService, OrderRepository orderRepository,
+                        OrderInventoryRepository orderInventoryRepository, OrderEventService orderEventService) {
+        this.inventoryService = inventoryService;
+        this.orderRepository = orderRepository;
+        this.orderInventoryRepository = orderInventoryRepository;
+        this.orderEventService = orderEventService;
+    }
 
 
     public OrderResponseDto createOrder(OrderDto orderDto) {
@@ -44,7 +51,7 @@ public class OrderService {
         final AtomicLong amount = new AtomicLong();
         // persist the order
         Order order = builAndPersistOrder(orderDto);
-        log.info("Order created: {}", order);
+        logger.info("Order created: {}", order);
 
         // build and persist the OrderInventory
         buildAndPersistOrderInventories(orderDto, inventories, order.getId(),amount);
@@ -91,7 +98,7 @@ public class OrderService {
             amount.addAndGet(totalPrice);
         });
 
-        log.info("Order Inventories persisted: {}", orderInventories);
+        logger.info("Order Inventories persisted: {}", orderInventories);
         orderInventoryRepository.saveAll(orderInventories);
 
     }

@@ -1,6 +1,5 @@
 package com.zee.springmodulithcourse.eventpublication;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +10,13 @@ import java.util.List;
  */
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CustomEventPublicationServiceImpl implements CustomEventPublicationService {
     private final CustomEventPublicationRepository customEventPublicationRepository;
+
+    public CustomEventPublicationServiceImpl(CustomEventPublicationRepository customEventPublicationRepository) {
+        this.customEventPublicationRepository = customEventPublicationRepository;
+    }
 
     @Override
     public List<CustomEventPublication> getUncompletedEventPublications() {

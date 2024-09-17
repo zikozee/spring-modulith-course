@@ -2,7 +2,6 @@ package com.zee.springmodulithcourse.eventaction;
 
 import com.zee.springmodulithcourse.eventaction.action.Action;
 import com.zee.springmodulithcourse.eventaction.action.CustomEventMarker;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.ApplicationArguments;
@@ -18,9 +17,13 @@ import java.util.*;
  * @code @created : 31 May, 2024
  */
 @Component
-@RequiredArgsConstructor
+
 public class Setup implements ApplicationRunner {
     private final EventActionRepository repository;
+
+    public Setup(EventActionRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

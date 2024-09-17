@@ -4,8 +4,8 @@ package com.zee.springmodulithcourse.payment;
 import com.zee.springmodulithcourse.order.dto.CompleteOrder;
 import com.zee.springmodulithcourse.order.dto.OrderPaymentDto;
 import com.zee.springmodulithcourse.payment.type.PaymentStatus;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 
@@ -16,16 +16,19 @@ import java.util.Optional;
  * @code @created : 30 May, 2024
  */
 
-@Slf4j
 @Component
-@RequiredArgsConstructor
 public class PaymentEventService {
+    private static final Logger logger = LoggerFactory.getLogger(PaymentEventService.class);
 
     private final PaymentRepository paymentRepository;
 
+    public PaymentEventService(PaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
+    }
+
     @ApplicationModuleListener
     void on(final OrderPaymentDto paymentDto) {
-        log.info("Order payment received in listener: {}", paymentDto);
+        logger.info("Order payment received in listener: {}", paymentDto);
 
         Payment payment = new Payment();
         payment.setOrderId(paymentDto.orderId());
@@ -36,7 +39,7 @@ public class PaymentEventService {
     @ApplicationModuleListener
     void completeOrder(final CompleteOrder completeOrder) {
 
-        log.info("Complete order received in listener: {}", completeOrder);
+        logger.info("Complete order received in listener: {}", completeOrder);
 
         Optional<Payment> optionalPayment = paymentRepository.getPaymentsByOrderId(completeOrder.orderIdentifier());
 

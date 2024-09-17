@@ -2,8 +2,6 @@ package com.zee.springmodulithcourse.eventaction;
 
 import com.zee.springmodulithcourse.eventaction.action.Action;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author : Ezekiel Eromosei
@@ -11,8 +9,6 @@ import lombok.Setter;
  */
 
 @Entity
-@Getter
-@Setter
 @Table(indexes = {
     @Index(name = "actionIdx", columnList = "action")
 })
@@ -25,4 +21,28 @@ public class EventAction {
     private Action action;
     @Column(name = "event_can", nullable = false)
     private String eventCanonicalName;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+    public String getEventCanonicalName() {
+        return eventCanonicalName;
+    }
+
+    public void setEventCanonicalName(String eventCanonicalName) {
+        this.eventCanonicalName = eventCanonicalName;
+    }
 }

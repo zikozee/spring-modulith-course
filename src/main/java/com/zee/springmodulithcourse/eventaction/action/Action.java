@@ -1,8 +1,5 @@
 package com.zee.springmodulithcourse.eventaction.action;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.Arrays;
 
 /**
@@ -10,8 +7,6 @@ import java.util.Arrays;
  * @code @created : 31 May, 2024
  */
 
-@AllArgsConstructor
-@Getter
 public enum Action {
     PAYMENT("P"), EMAIL("E"), COMPLETE_PAYMENT("C");
 
@@ -21,5 +16,13 @@ public enum Action {
         return Arrays.stream(Action.values())
                 .filter(action -> action.name().equalsIgnoreCase(name))
                 .findFirst().orElse(null);
+    }
+
+    Action(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

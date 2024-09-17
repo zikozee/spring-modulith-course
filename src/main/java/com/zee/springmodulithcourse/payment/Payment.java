@@ -5,9 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -17,9 +14,6 @@ import java.time.Instant;
  * @code @created : 30 May, 2024
  */
 
-@Getter
-@Setter
-@ToString
 @Entity
 public class Payment {
 
@@ -30,4 +24,55 @@ public class Payment {
     private long amount;
     private Timestamp paymentDate = Timestamp.from(Instant.now());
     private PaymentStatus status = PaymentStatus.INCOMPLETE;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+
+    public Timestamp getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(Timestamp paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public PaymentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PaymentStatus status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", orderId='" + orderId + '\'' +
+                ", amount=" + amount +
+                ", paymentDate=" + paymentDate +
+                ", status=" + status +
+                '}';
+    }
 }

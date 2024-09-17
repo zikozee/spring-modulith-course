@@ -5,7 +5,6 @@ import com.zee.springmodulithcourse.order.dto.CompleteOrderResponse;
 import com.zee.springmodulithcourse.order.dto.OrderDto;
 import com.zee.springmodulithcourse.order.dto.OrderResponseDto;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @code @created : 30 May, 2024
  */
 
-@RestController
-@RequiredArgsConstructor
-@RequestMapping(path = "order")
+@RestController @RequestMapping(path = "order")
 public class OrderController {
     private final OrderService orderService;
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @PostMapping
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody @Valid OrderDto orderDto) {
